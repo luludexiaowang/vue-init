@@ -1,6 +1,6 @@
 <template>
-  <div class="app">
-    hello world
+  <div>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -16,20 +16,5 @@ export default {
   }
 }
 </script>
-
 <style lang="less" module>
-  @font-face {
-    font-family: 'MyFont';
-    src:  url('../asset/font/OpenSans-Light.ttf');
-    font-weight: 600;
-    font-style: normal;
-  }
-  .app {
-    font-family: 'MyFont';
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
-  }
 </style>

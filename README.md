@@ -1,11 +1,13 @@
 # vue-init
 
-一、vue + webpack4 项目初始化
+vue + webpack4 + vue-route + element-ui 初始化项目
 
-1、项目结构
-2、项目配置
-3、项目打包
-4、项目规范
+项目结构
+  build webpack配置文件
+  dist 打包文件输出地址
+  src 项目主要文件存放地址
+    client 静态文件文件夹
+    entry 入口文件文件夹
 
 使用 npm i 安装依赖
 
