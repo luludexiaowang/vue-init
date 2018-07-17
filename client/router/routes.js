@@ -1,4 +1,5 @@
-import Index from '../view/home/index.vue' // 首页模版
+import Index from 'client/views/app.vue'
+import Home from 'client/views/home/index.vue'
 
 const routes = [
   {
@@ -11,7 +12,7 @@ const routes = [
     children: [
       {
         path: 'home/index',
-        component: Index,
+        component: Home,
         meta: {
           always: true
         }

@@ -1,16 +1,22 @@
 const path = require('path')
 const createVueLoaderOptions = require('./vue-loader.config')
+
 const isDev = process.env.NODE_ENV === 'development'
 
-module.exports = {
+const config = {
+  mode: process.env.NODE_ENV || 'production', // development || production
   target: 'web',
-  mode: process.env.NODE_ENV || 'production',
-  entry: {
-    app: path.resolve(__dirname, '../../src/entry/index.js')
-  },
+  entry: path.join(__dirname, '../client/entry/index.js'),
   output: {
-    filename: '[name].[hash:8].js',
-    path: path.resolve(__dirname, '../../dist')
+    filename: 'bundle.[hash:8].js',
+    path: path.join(__dirname, '../dist')
+  },
+  resolve: {
+    extensions: ['.js', '.vue', '.json'],
+    alias: {
+      'client': path.resolve(__dirname, '../client'),
+      'style': path.resolve(__dirname, '../client/assets/styles')
+    }
   },
   module: {
     rules: [
@@ -37,13 +43,12 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          'style-loader',
-          'css-loader'
+          {
+            loader: 'vue-style-loader'
+          }, {
+            loader: 'css-loader'
+          }
         ]
-      },
-      {
-        test: /\.less$/,
-        use: 'style-loader?sourceMap!css-loader?sourceMap!less-loader?sourceMap'.split('!')
       },
       {
         test: /\.(gif|jpg|jpeg|png|svg)$/,
@@ -52,16 +57,19 @@ module.exports = {
             loader: 'url-loader',
             options: {
               limit: 1024,
-              name: 'resources/[name].[hash:8].[ext]'
+              name: 'resources/[path][name].[hash:8].[ext]'
             }
           }
         ]
-      }, {
+      },
+      {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
         use: [
-          'file-loader'
+          'url-loader'
         ]
       }
     ]
   }
 }
+
+module.exports = config
